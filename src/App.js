@@ -74,7 +74,7 @@ class App extends Component
             actTimes: this.state.actTimes + 1
           })
         }
-      }, 70)
+      }, 100)
     }
     else if (!this.state.isRolling && this.state.gold < 10)
     {
