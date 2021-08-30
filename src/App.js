@@ -111,7 +111,7 @@ class App extends Component
 
   render() 
   {
-    const {activedId, gold} = this.state;
+    const {content, itemId, activedId, gold} = this.state;
     return (
       <div className="App">
         <div className="goldNum"> 目前金币: {gold} </div>
@@ -122,18 +122,18 @@ class App extends Component
                 点击开始
               </div>
               <div className="area__row">
-                <RowItem content={this.state.content[0]} itemId={this.state.itemId[0]} activedId={activedId} />
-                <RowItem content={this.state.content[1]} itemId={this.state.itemId[1]} activedId={activedId} />
-                <RowItem content={this.state.content[2]} itemId={this.state.itemId[2]} activedId={activedId} />
+                <RowItem content={content[0]} itemId={itemId[0]} activedId={activedId} />
+                <RowItem content={content[1]} itemId={itemId[1]} activedId={activedId} />
+                <RowItem content={content[2]} itemId={itemId[2]} activedId={activedId} />
               </div>
               <div className="area__row">
-                <RowItem content={this.state.content[7]} itemId={this.state.itemId[7]} activedId={activedId} />
-                <RowItem content={this.state.content[3]} itemId={this.state.itemId[3]} activedId={activedId} />
+                <RowItem content={content[7]} itemId={itemId[7]} activedId={activedId} />
+                <RowItem content={content[3]} itemId={itemId[3]} activedId={activedId} />
               </div>
               <div className="area__row">
-                <RowItem content={this.state.content[6]} itemId={this.state.itemId[6]} activedId={activedId} />
-                <RowItem content={this.state.content[5]} itemId={this.state.itemId[5]} activedId={activedId} />
-                <RowItem content={this.state.content[4]} itemId={this.state.itemId[4]} activedId={activedId} />
+                <RowItem content={content[6]} itemId={itemId[6]} activedId={activedId} />
+                <RowItem content={content[5]} itemId={itemId[5]} activedId={activedId} />
+                <RowItem content={content[4]} itemId={itemId[4]} activedId={activedId} />
               </div>
             </div>
           </div>
