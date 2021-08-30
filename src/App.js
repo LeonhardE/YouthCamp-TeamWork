@@ -96,9 +96,7 @@ class App extends Component
     const {activedId, gold} = this.state;
     return (
       <div className="App">
-        <p>
-          目前金币: {gold}
-        </p>
+        <div className="goldNum"> 目前金币: {gold} </div>
         <div className="prize">
           <div className="prize__container">
             <div className="container__area">

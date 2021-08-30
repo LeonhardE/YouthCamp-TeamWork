@@ -1,3 +1,8 @@
+.goldNum {
+  font-size: 30px;
+  padding: 20px;
+}
+
 .prize {
   width: 100%;
   max-width: 480px;
