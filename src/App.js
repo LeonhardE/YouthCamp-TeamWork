@@ -77,7 +77,7 @@ class App extends Component
             actTimes: this.state.actTimes + 1
           })
         }
-      }, 70)
+      }, 100)
     }
     else if (!this.state.isRolling && this.state.gold < 10)
     {
@@ -99,9 +99,7 @@ class App extends Component
     const {activedId, gold} = this.state;
     return (
       <div className="App">
-        <p>
-          金币: {gold}
-        </p>
+        <div className="goldNum"> 目前金币: {gold} </div>
         <div className="prize">
           <div className="prize__container">
             <div className="container__area">
