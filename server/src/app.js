@@ -19,7 +19,42 @@ app.all('*', function (req, res, next) {
 
 app.get('/prize', function(req, res) {
   // 随机生成中奖Id和转动次数
-  let prize = Math.floor(Math.random() * 8)
+  let prize = Math.random() * 100
+  // 不同的Id对应的中奖概率分别是[0.20, 0.06, 0.15, 0.15, 0.20, 0.03, 0.06, 0.15]
+  if (prize < 20)
+  {
+    prize = 0
+  }
+  else if (prize < 26)
+  {
+    prize = 1
+  }
+  else if (prize < 41)
+  {
+    prize = 2
+  }
+  else if (prize < 56)
+  {
+    prize = 3
+  }
+  else if (prize < 76)
+  {
+    prize = 4
+  }
+  else if (prize < 79)
+  {
+    prize = 5
+  }
+  else if (prize < 85)
+  {
+    prize = 6
+  }
+  else
+  {
+    prize = 7
+  }
+  console.log(prize)
+  // 随机生成转动次数
   let times = 8 * Math.floor(Math.random() * 4 + 3)
   var data = {
     code: 200,
@@ -35,3 +70,5 @@ app.get('/prize', function(req, res) {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+module.exports = app;

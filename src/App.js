@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import RowItem from './component/RowItem.js'
 
-const content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '钻石100']
+const content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '纪念书签']
 const itemId = [0, 1, 2, 3, 4, 5, 6, 7]
 
 class App extends Component 
