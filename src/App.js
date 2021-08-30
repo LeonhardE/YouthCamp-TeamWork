@@ -97,7 +97,7 @@ class App extends Component
     return (
       <div className="App">
         <p>
-          金币: {gold}
+          目前金币: {gold}
         </p>
         <div className="prize">
           <div className="prize__container">
