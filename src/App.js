@@ -32,19 +32,22 @@ class App extends Component
     // 判断是否在抽取过程中，以及金币是否足够
     if (!this.state.isRolling && this.state.gold > 10) 
     {
-      // 前端随机获取一个中奖ID，后续工作希望使用NodeJS在后端进行抽奖
-      let prize = Math.floor(Math.random() * 8)
-      console.log(prize)
-      // 随机算出一个动画执行的最小次数，这里可以随机变更数值，按自己的需求来
-      let randtimes = itemId.length * Math.floor(Math.random() * 4 + 3)
-      // 设置状态
-      this.setState({
-        activedId: 0,
-        prizeId: prize,
-        times: randtimes,
-        actTimes: 0,
-        isRolling: true,
-        gold: this.state.gold - 10
+      // 通过后台API获取奖品Id和转动次数
+      fetch('http://localhost:5000/prize')
+      .then(res => res.json())
+      .then((data) => {
+        console.log("data")
+        console.log(data.data.id)
+        console.log(data.data.time)
+        // 设置状态
+        this.setState({
+          activedId: 0,
+          actTimes: 0,
+          isRolling: true,
+          gold: this.state.gold - 10,
+          prizeId: data.data.id,
+          times: data.data.time
+        })
       })
       // 抽奖动画执行开始
       this.begin = setInterval(() => 
@@ -127,94 +130,5 @@ class App extends Component
     );
   }
 }
-
-
-// 以下是我写的Hooks版本，目前似乎无法完成动画效果，有小伙伴可以看看为什么吗
-// function App()
-// {
-//   const [activedId, setActivedId] = useState(0);
-//   const [prizeId, setPrizeId] = useState('');
-//   const [times, setTimes] = useState(0);
-//   const [actTimes, setActTimes] = useState(0);
-//   const [isRolling, setIsRolling] = useState(false);
-//   const [gold, setGold] = useState(0);
-
-//   const Charge = () => {
-//     // 充值金币
-//     setGold(gold + 100)
-//   }
-
-//   const handleBegin = () => {
-//     if (!isRolling && gold > 10)
-//     {
-//       setGold(gold - 10)
-//       setIsRolling(true)
-//       setActivedId(0)
-//       // 前端生成随机数决定抽奖结果，后续希望用NodeJS实现后端抽奖
-//       let prize = Math.floor(Math.random() * 8)
-//       console.log(prize)
-//       setPrizeId(prize)
-//       // 前端随机决定转动次数
-//       let time = itemId.length * Math.floor(Math.random() * 4 + 3)
-//       setTimes(time);
-      
-//       const begin = setInterval(() => 
-//       {
-//         if (activedId === prizeId && actTimes > times) 
-//         {
-//           clearInterval(begin)
-//           setIsRolling(false)
-//           alert('恭喜获得 '+ content[prizeId] +'！请联系管理员兑换奖品')
-//         }
-//         if (activedId === 7) {
-//           setActivedId(0)
-//         } 
-//         else 
-//         {
-//           setActivedId(activedId + 1)
-//         }
-      
-//         setActTimes(actTimes + 1)
-
-//       }, 70)
-//     }
-//     else if (!isRolling && gold < 10)
-//     {
-//       alert('金币余额不足，请充值')
-//     }
-//   }
-  
-//   return (
-//           <div className="App">
-//             <p>
-//               金币: {gold}
-//             </p>
-//             <div className="prize">
-//               <div className="prize__container">
-//                 <div className="container__area">
-//                   <div className="begin__btn" onClick={handleBegin}>
-//                     点击开始
-//                   </div>
-//                   <div className="area__row">
-//                     <RowItem content={content[0]} itemId={itemId[0]} activedId={activedId} />
-//                     <RowItem content={content[1]} itemId={itemId[1]} activedId={activedId} />
-//                     <RowItem content={content[2]} itemId={itemId[2]} activedId={activedId} />
-//                   </div>
-//                   <div className="area__row">
-//                     <RowItem content={content[7]} itemId={itemId[7]} activedId={activedId} />
-//                     <RowItem content={content[3]} itemId={itemId[3]} activedId={activedId} />
-//                   </div>
-//                   <div className="area__row">
-//                     <RowItem content={content[6]} itemId={itemId[6]} activedId={activedId} />
-//                     <RowItem content={content[5]} itemId={itemId[5]} activedId={activedId} />
-//                     <RowItem content={content[4]} itemId={itemId[4]} activedId={activedId} />
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//             <button className="charge__btn" onClick={Charge}>充值</button>
-//           </div>
-//         );
-// }
 
 export default App;
