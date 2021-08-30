@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import RowItem from './component/RowItem.js'
 
-const content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '纪念书签']
-const itemId = [0, 1, 2, 3, 4, 5, 6, 7]
 
 class App extends Component 
 {
@@ -12,6 +10,10 @@ class App extends Component
     super()
     this.state = 
     {
+      // 奖品内容
+      content: [],
+      // 奖品ID
+      itemId: [],
       // 被选中的格子的ID
       activedId: '',
       // 中奖ID
@@ -27,13 +29,26 @@ class App extends Component
     }
   }
 
+  componentDidMount()
+  {
+    // 从后端获取奖品列表
+    fetch('http://localhost:5000/prizeinfo')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({
+        content: data.data.prize_content,
+        itemId: data.data.prize_id
+      })
+    })
+  }
+
   handleBegin() 
   {
     // 判断是否在抽取过程中，以及金币是否足够
     if (!this.state.isRolling && this.state.gold > 10) 
     {
       // 通过后台API获取奖品Id和转动次数
-      fetch('http://localhost:5000/prize')
+      fetch('http://localhost:5000/roll')
       .then(res => res.json())
       .then((data) => {
         console.log("data")
@@ -59,7 +74,7 @@ class App extends Component
           this.setState({
             isRolling: false
           })
-          alert('恭喜获得 '+ content[this.state.prizeId] +'！请联系管理员兑换奖品')
+          alert('恭喜获得 '+ this.state.content[this.state.prizeId] +'！请联系管理员兑换奖品')
           return
         }
         // 以下是动画执行时对id的判断
@@ -77,7 +92,7 @@ class App extends Component
             actTimes: this.state.actTimes + 1
           })
         }
-      }, 100)
+      }, 80)
     }
     else if (!this.state.isRolling && this.state.gold < 10)
     {
@@ -107,18 +122,18 @@ class App extends Component
                 点击开始
               </div>
               <div className="area__row">
-                <RowItem content={content[0]} itemId={itemId[0]} activedId={activedId} />
-                <RowItem content={content[1]} itemId={itemId[1]} activedId={activedId} />
-                <RowItem content={content[2]} itemId={itemId[2]} activedId={activedId} />
+                <RowItem content={this.state.content[0]} itemId={this.state.itemId[0]} activedId={activedId} />
+                <RowItem content={this.state.content[1]} itemId={this.state.itemId[1]} activedId={activedId} />
+                <RowItem content={this.state.content[2]} itemId={this.state.itemId[2]} activedId={activedId} />
               </div>
               <div className="area__row">
-                <RowItem content={content[7]} itemId={itemId[7]} activedId={activedId} />
-                <RowItem content={content[3]} itemId={itemId[3]} activedId={activedId} />
+                <RowItem content={this.state.content[7]} itemId={this.state.itemId[7]} activedId={activedId} />
+                <RowItem content={this.state.content[3]} itemId={this.state.itemId[3]} activedId={activedId} />
               </div>
               <div className="area__row">
-                <RowItem content={content[6]} itemId={itemId[6]} activedId={activedId} />
-                <RowItem content={content[5]} itemId={itemId[5]} activedId={activedId} />
-                <RowItem content={content[4]} itemId={itemId[4]} activedId={activedId} />
+                <RowItem content={this.state.content[6]} itemId={this.state.itemId[6]} activedId={activedId} />
+                <RowItem content={this.state.content[5]} itemId={this.state.itemId[5]} activedId={activedId} />
+                <RowItem content={this.state.content[4]} itemId={this.state.itemId[4]} activedId={activedId} />
               </div>
             </div>
           </div>
