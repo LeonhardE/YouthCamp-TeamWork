@@ -15,10 +15,11 @@
     prize_container.addClass('selected');
     x++;
     if (x==initial) {setTimeout(()=>{
-     if (position[(x%8)]==2) {
-      randmoney();
-     }else{
-      alert('恭喜获得礼物：'+gift.text());
+     if (position[]==0) {
+      alert('Bug:');
+     }
+     if (position[]==) {
+      alert('恭喜获得奖品:66矿石');
      }
      console.log(position[(x%8)]);
      x=0;
