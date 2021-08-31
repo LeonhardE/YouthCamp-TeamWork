@@ -1,21 +1,18 @@
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>  
-
-<script>
+  <script>
  var gift;
  var x=0;
  //可修改ArrList以定义每一奖项中奖概率;
  var ArrList=[20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35]; 
  //position用于定位每一个抽奖格;
  var position=[0,1,2,5,8,7,6,3];
- var money=[1.88,5.20,6.66,8.88,13.14,66.66,88.88,99.99,100];
 
  function start(){
   var initial=getArrayItems(ArrList,1);
   for (var i = 0; i < initial; i++) {
    setTimeout(()=>{
-    $('.gift').removeClass("selected");
-    gift=$('.gift:eq('+ position[(x%8)] +')');
-    gift.addClass('selected');
+    $('.prize_container').removeClass("selected");
+    prize_container=$('.prize_container:eq('+ position[(x%8)] +')');
+    prize_container.addClass('selected');
     x++;
     if (x==initial) {setTimeout(()=>{
      if (position[(x%8)]==2) {
@@ -30,20 +27,7 @@
   }
  }
 
- function randmoney(){
-  for (var i = 0; i < 15; i++) {
-   setTimeout(()=>{
-    $('.gift:eq(1)').text(getArrayItems(money,1));
-    x++;
-    if (x==15) {x=0;setTimeout(()=>{
-                    console.log($('.gift:eq(1)').text()+"元");
-     alert('恭喜获得红包：'+$('.gift:eq(1)').text()+"元");
-     $('.gift:eq(1)').text('随机金额红包');
-    },1)}
-   },i*100);
-
-  };
- }
+ 
 
  function getArrayItems(arr, num) {
      //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
