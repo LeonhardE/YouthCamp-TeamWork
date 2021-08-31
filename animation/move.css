@@ -30,6 +30,15 @@
      if (position[]==5) {
       alert('恭喜获得奖品:掘金新款T恤');
      }
+     if (position[]==6) {
+      alert('恭喜获得奖品:Yoyo抱枕');
+     }
+     if (position[]==7) {
+      alert('恭喜获得奖品:Switch');
+     }
+     if (position[]==8) {
+      alert('恭喜获得奖品:乐高海洋巨轮');
+     }
      console.log(position[(x%8)]);
      x=0;
     },10)}
