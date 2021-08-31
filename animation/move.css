@@ -18,8 +18,17 @@
      if (position[]==0) {
       alert('Bug:');
      }
-     if (position[]==) {
+     if (position[]==1) {
       alert('恭喜获得奖品:66矿石');
+     }
+     if (position[]==2) {
+      alert('恭喜获得奖品:随机限量徽章');
+     }
+     if (position[]==3) {
+      alert('恭喜获得奖品:掘金限量桌垫');
+     }
+     if (position[]==5) {
+      alert('恭喜获得奖品:掘金新款T恤');
      }
      console.log(position[(x%8)]);
      x=0;
