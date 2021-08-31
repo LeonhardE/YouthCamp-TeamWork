@@ -4,6 +4,7 @@ import RowItem from './component/RowItem.js'
 
 const content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '钻石100']
 const itemId = [0, 1, 2, 3, 4, 5, 6, 7]
+const gainList = []
 
 class App extends Component 
 {
@@ -23,7 +24,9 @@ class App extends Component
       // 是否正在抽奖
       isRolling: false,
       // 金币
-      gold: 0
+      gold: 0,
+      // 中奖数组
+      gainList: []
     }
   }
 
@@ -34,7 +37,7 @@ class App extends Component
     {
       // 前端随机获取一个中奖ID，后续工作希望使用NodeJS在后端进行抽奖
       let prize = Math.floor(Math.random() * 8)
-      console.log(prize)
+      // console.log(prize)
       // 随机算出一个动画执行的最小次数，这里可以随机变更数值，按自己的需求来
       let randtimes = itemId.length * Math.floor(Math.random() * 4 + 3)
       // 设置状态
@@ -44,7 +47,7 @@ class App extends Component
         times: randtimes,
         actTimes: 0,
         isRolling: true,
-        gold: this.state.gold - 10
+        gold: this.state.gold - 10,
       })
       // 抽奖动画执行开始
       this.begin = setInterval(() => 
@@ -56,8 +59,10 @@ class App extends Component
           this.setState({
             isRolling: false
           })
-          alert('恭喜获得 '+ content[this.state.prizeId] +'！请联系管理员兑换奖品')
-          return
+          alert('恭喜获得 '+ content[this.state.prizeId] +'！请联系管理员兑换奖品');
+          gainList.push(content[this.state.prizeId]);
+          console.log(gainList);
+          return gainList
         }
         // 以下是动画执行时对id的判断
         if (this.state.activedId === 7) 
@@ -91,13 +96,32 @@ class App extends Component
     })
   }
 
+  // showGainList()
+  // {
+  //   return
+
+  // }
+
   render() 
   {
     const {activedId, gold} = this.state;
+    const newArr = [];
+    gainList.forEach((ele,index) => {
+      var temp = <li key={index}>{ele}</li>;
+      newArr.push(temp);
+    })
     return (
       <div className="App">
-        <div className="goldNum"> 目前金币: {gold} </div>
-        <div className="prize">
+        <div className="title">幸 运 大 抽 奖</div>
+        <div className="left">
+          <p className="intro">欢迎来到幸运大抽奖！</p>
+          <p className="intro">以下为您目前所持的金币数量。</p>
+          <div className="goldNum"> 
+            <div className="goldNumText">金 币: {gold} </div>
+          </div>
+          <button className="charge__btn" onClick={() => this.chargeGold()}>充 值</button>
+        </div> 
+        <div className="centre">
           <div className="prize__container">
             <div className="container__area">
               <div className="begin__btn" onClick={() => this.handleBegin()}>
@@ -119,8 +143,19 @@ class App extends Component
               </div>
             </div>
           </div>
+        </div> 
+        <div className="right">
+          <p className="lists">您的奖品列表： </p>
+          <div className="showLists">
+            {/* {gainList.map(item => (
+              <li key={item}>item</li>
+            ))} */}
+            {/* {gainList.map((item) => {
+              return <li key={item}>item</li>
+            })} */}
+            <ul className="listStyle">{newArr}</ul>
+          </div>
         </div>
-        <button className="charge__btn" onClick={() => this.chargeGold()}>充值</button>
       </div>
     );
   }
