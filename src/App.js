@@ -61,8 +61,8 @@ class App extends Component
           })
           alert('恭喜获得 '+ content[this.state.prizeId] +'！请联系管理员兑换奖品');
           gainList.push(content[this.state.prizeId]);
-          console.log(gainList);
-          return gainList
+          // console.log(gainList);
+          return 
         }
         // 以下是动画执行时对id的判断
         if (this.state.activedId === 7) 
@@ -147,12 +147,6 @@ class App extends Component
         <div className="right">
           <p className="lists">您的奖品列表： </p>
           <div className="showLists">
-            {/* {gainList.map(item => (
-              <li key={item}>item</li>
-            ))} */}
-            {/* {gainList.map((item) => {
-              return <li key={item}>item</li>
-            })} */}
             <ul className="listStyle">{newArr}</ul>
           </div>
         </div>
