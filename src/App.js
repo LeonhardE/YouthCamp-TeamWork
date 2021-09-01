@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import RowItem from './component/RowItem.js'
 
+const gainList = []
 
 class App extends Component 
 {
@@ -25,7 +26,9 @@ class App extends Component
       // 是否正在抽奖
       isRolling: false,
       // 金币
-      gold: 0
+      gold: 0,
+      // 中奖数组
+      gainList: []
     }
   }
 
@@ -74,7 +77,9 @@ class App extends Component
           this.setState({
             isRolling: false
           })
-          alert('恭喜获得 '+ this.state.content[this.state.prizeId] +'！请联系管理员兑换奖品')
+          alert('恭喜获得 '+ this.state.content[this.state.prizeId] +'！请联系管理员兑换奖品');
+          gainList.push(this.state.content[this.state.prizeId]);
+          // console.log(gainList);
           return
         }
         // 以下是动画执行时对id的判断
@@ -112,10 +117,23 @@ class App extends Component
   render() 
   {
     const {content, itemId, activedId, gold} = this.state;
+    const newArr = [];
+    gainList.forEach((ele,index) => {
+      var temp = <li key={index}>{ele}</li>;
+      newArr.push(temp);
+    })
     return (
       <div className="App">
-        <div className="goldNum"> 目前金币: {gold} </div>
-        <div className="prize">
+        <div className="title">幸 运 大 抽 奖</div>
+        <div className="left">
+          <p className="intro">欢迎来到幸运大抽奖！</p>
+          <p className="intro">以下为您目前所持的金币数量。</p>
+          <div className="goldNum"> 
+            <div className="goldNumText">金 币: {gold} </div>
+          </div>
+          <button className="charge__btn" onClick={() => this.chargeGold()}>充 值</button>
+        </div> 
+        <div className="centre">
           <div className="prize__container">
             <div className="container__area">
               <div className="begin__btn" onClick={() => this.handleBegin()}>
@@ -137,8 +155,13 @@ class App extends Component
               </div>
             </div>
           </div>
+        </div> 
+        <div className="right">
+          <p className="lists">您的奖品列表： </p>
+          <div className="showLists">
+            <ul className="listStyle">{newArr}</ul>
+          </div>
         </div>
-        <button className="charge__btn" onClick={() => this.chargeGold()}>充值</button>
       </div>
     );
   }
