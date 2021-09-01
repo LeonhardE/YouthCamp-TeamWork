@@ -35,7 +35,8 @@ app.get('/prizeinfo', function(req, res) {
 
 app.get('/roll', function(req, res) {
   // 随机生成中奖Id和转动次数
-  let prize = Math.random() * 100
+  let prize = Math.trunc(Math.random() * 100)
+  console.log("prize"+prize)
   // 不同的Id对应的中奖概率分别是[0.05, 0.01, 0.10, 0.10, 0.10, 0.05, 0.01, 0.58]
   if (prize < 5)
   {
