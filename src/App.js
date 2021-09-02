@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import PrizeList from './component/PrizeList';
 import RowItem from './component/RowItem.js'
 
-const gainList = []
 
 class App extends Component 
 {
@@ -27,7 +27,7 @@ class App extends Component
       isRolling: false,
       // 金币
       gold: 0,
-      // 中奖数组
+      // 奖品列表
       gainList: []
     }
   }
@@ -74,12 +74,17 @@ class App extends Component
         {
           // 符合上述所有条件时才是中奖的时候，两个ID相同并且动画执行的次数大于(或等于也行)设定的最小次数
           clearInterval(this.begin)
+          let templist = this.state.gainList
+          // 如果抽中除谢谢参与以外奖项，则加入奖品列表
+          if (this.state.prizeId !== 7)
+          {
+            templist.push(this.state.content[this.state.prizeId])
+          }
           this.setState({
-            isRolling: false
+            isRolling: false,
+            gainList: templist
           })
           alert('恭喜获得 '+ this.state.content[this.state.prizeId] +'！请联系管理员兑换奖品');
-          gainList.push(this.state.content[this.state.prizeId]);
-          // console.log(gainList);
           return
         }
         // 以下是动画执行时对id的判断
@@ -117,11 +122,6 @@ class App extends Component
   render() 
   {
     const {content, itemId, activedId, gold} = this.state;
-    const newArr = [];
-    gainList.forEach((ele,index) => {
-      var temp = <li key={index}>{ele}</li>;
-      newArr.push(temp);
-    })
     return (
       <div className="App">
         <div className="title">幸 运 大 抽 奖</div>
@@ -158,9 +158,7 @@ class App extends Component
         </div> 
         <div className="right">
           <p className="lists">您的奖品列表： </p>
-          <div className="showLists">
-            <ul className="listStyle">{newArr}</ul>
-          </div>
+          <PrizeList List = {this.state.gainList} />
         </div>
       </div>
     );

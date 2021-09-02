@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const port = 5000
 // 奖品信息
-const content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '谢谢参与']
-const itemId = [0, 1, 2, 3, 4, 5, 6, 7]
+let content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '谢谢参与']
+let itemId = [0, 1, 2, 3, 4, 5, 6, 7]
 
 app.all('*', function (req, res, next) {
   // 解决跨域访问的问题
