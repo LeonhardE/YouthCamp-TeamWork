@@ -29,11 +29,11 @@
 
 ### 幸运大转盘
 
-![截屏2021-09-03 下午5.56.54](https://LeonhardE.github.io/images/roll_home.png)
+![roll_home](https://LeonhardE.github.io/images/roll_home.png)
 
 ### 后台管理系统
 
-![截屏2021-09-03 下午5.55.00](https://LeonhardE.github.io/images/roll_manage.png)
+![roll_manage](https://LeonhardE.github.io/images/roll_manage.png)
 
 ## 团队构成
 
