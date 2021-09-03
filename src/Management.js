@@ -49,7 +49,7 @@ class Management extends Component
   }
 
   contentChange(index,e){
-    // console.log("修改后的值为：",e.target.value);
+    // 实时根据用户输入更新奖品内容
     let { content } = this.state;
     content[index] = e.target.value;
     let newArr = content;
@@ -59,7 +59,7 @@ class Management extends Component
   }
 
   probabilityChange(index,e){
-    // console.log("修改后的值为：",e.target.value);
+    // 实时根据用户输入更新奖品概率
     let { probability } = this.state;
     probability[index] = parseInt(e.target.value);
     let newArr = probability;
@@ -72,14 +72,22 @@ class Management extends Component
   {
     console.log("handleSubmit()! this.state.content: " + this.state.content)
     console.log("handleSubmit()! this.state.probability: " + this.state.probability)
-
+    // 判断概率总和是否为100
     var sum = 0
     this.state.probability.forEach(ele => { sum += ele; });
     if (sum !== 100){
       alert("提交失败！概率总和要为100！目前概率总和"+sum+"!")
       return
     }
-
+    // 判断有无奖项为空
+    for (let i=0; i<this.state.content.length; i++){
+      if(this.state.content[i] === ""){
+        var index = i+1
+        alert("提交失败！奖项"+index+"不能为空!")
+        return
+      }
+    }
+    // 表单上传至后端，更新奖项内容和概率
     var formData = new FormData();
     formData.append("content", this.state.content);
     formData.append("probability", this.state.probability);
@@ -92,9 +100,8 @@ class Management extends Component
       contentType: false,
       processData: false,
       body: formData,
-      // dataType: "text",
     })
-      .then(res => res.text())          // convert to plain text
+      .then(res => res.text()) // convert to plain text
       .catch(error => console.error('Error:', error))
       .then(response => {
         console.log('Success:', response)
