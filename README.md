@@ -33,7 +33,7 @@
 
 ### 后台管理系统
 
-![roll_manage](https://LeonhardE.github.io/images/roll_manage.png)
+![roll_manage](https://LeonhardE.github.io/images/roll_management.png)
 
 ## 团队构成
 
