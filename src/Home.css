@@ -1,24 +1,35 @@
-.title {
+.App {
+  position: absolute;
+  width: 1500px;
+  height: 800px;
+  overflow: script;
+  margin: 0 auto;
+  background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+}
+
+.btn1 {
+  padding: 20px 0 0 20px
+}
+
+.title1 {
   font-size: 60px;
   text-align: center;
-  padding: 40px 20px 20px;
-  background-color: #FFA500;
+  padding: 0px 20px 20px;
 } 
 
 .left {
   position: absolute;
   top: 144px;
-  left: 0;
+  left: 50px;
   width: 300px;
   height: 625px;
-  background-color: #FFA500;
 }
 
 .centre {
-  margin-left: 300px;
-  margin-right: 300px;
-  height: 625px;
-  background-color: #FFA500;
+  position: absolute;
+  margin-left: 470px;
+  margin-right: 470px;
+  height: 550px;
   display: flex;
   align-items: center;
 }
@@ -27,9 +38,8 @@
   position: absolute;
   top: 144px;
   right: 0;
-  width: 300px;
+  width: 350px;
   height: 625px;
-  background-color: #FFA500;
 }
 
 .intro {
@@ -72,7 +82,7 @@
   height: 400px;
   padding: 20px;
   box-sizing: border-box;
-  position: relative;
+  position: absolute;
 }
 
 .begin__btn {
