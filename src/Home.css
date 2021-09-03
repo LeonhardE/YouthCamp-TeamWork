@@ -4,7 +4,7 @@
   height: 800px;
   overflow: script;
   margin: 0 auto;
-  background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+  background-image: linear-gradient(to right, #ffef93 0%, #ffa4c0 100%);
 }
 
 .btn1 {
