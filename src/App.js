@@ -121,7 +121,7 @@ class App extends Component
 
   render() 
   {
-    const {content, itemId, activedId, gold} = this.state;
+    const {content, itemId, activedId, gold, gainList} = this.state;
     return (
       <div className="App">
         <div className="title">幸 运 大 抽 奖</div>
@@ -158,7 +158,7 @@ class App extends Component
         </div> 
         <div className="right">
           <p className="lists">您的奖品列表： </p>
-          <PrizeList List = {this.state.gainList} />
+          <PrizeList List = {gainList} />
         </div>
       </div>
     );
