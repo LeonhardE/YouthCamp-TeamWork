@@ -6,6 +6,8 @@ const multiparty = require('multiparty')
 let content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '谢谢参与']
 let itemId = [0, 1, 2, 3, 4, 5, 6, 7]
 let probability = [5, 1, 10, 10, 10, 5, 1, 58]
+let list = []
+let gold_balance = 0
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -57,8 +59,19 @@ app.get('/prizeinfo', function(req, res) {
     data: {
       prize_content: content,
       prize_id: itemId,
-      prize_prob: probability,
+      prize_prob: probability
+    }
+  }
+  res.json(data)
+})
 
+app.get('/playerinfo', function(req, res) {
+  var data = {
+    code: 200,
+    msg: 'OK',
+    data: {
+      gold: gold_balance,
+      gainList: list
     }
   }
   res.json(data)
@@ -86,14 +99,34 @@ app.get('/roll', function(req, res) {
   else if (prize < group[6]) prize = 6
   else prize = 7
   console.log(prize)
+  // 记录奖品情况
+  if (prize !== 7)
+  {
+    list.push(content[prize])
+  }
   // 随机生成转动次数
   let times = 8 * Math.floor(Math.random() * 4 + 3)
+  // 扣除金币
+  gold_balance = gold_balance - 10
   var data = {
     code: 200,
     msg: 'OK', 
     data: {
       id: prize,
-      time: times
+      time: times,
+      gold: gold_balance
+    }
+  }
+  res.json(data)
+})
+
+app.get('/charge', function(req, res){
+  gold_balance = gold_balance + 100
+  var data = {
+    code: 200,
+    msg: 'OK',
+    data: {
+      gold: gold_balance
     }
   }
   res.json(data)

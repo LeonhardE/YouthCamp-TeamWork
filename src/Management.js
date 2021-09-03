@@ -37,7 +37,7 @@ class Management extends Component
   componentDidMount()
   {
     // 从后端获取奖品列表和概率
-    fetch('http://localhost:5000/prizeinfo')
+    fetch('/prizeinfo')
     .then(res => res.json())
     .then((data) => {
       this.setState({
@@ -49,7 +49,7 @@ class Management extends Component
   }
 
   contentChange(index,e){
-    console.log("修改后的值为：",e.target.value);
+    // console.log("修改后的值为：",e.target.value);
     let { content } = this.state;
     content[index] = e.target.value;
     let newArr = content;
@@ -59,7 +59,7 @@ class Management extends Component
   }
 
   probabilityChange(index,e){
-    console.log("修改后的值为：",e.target.value);
+    // console.log("修改后的值为：",e.target.value);
     let { probability } = this.state;
     probability[index] = parseInt(e.target.value);
     let newArr = probability;
@@ -106,7 +106,7 @@ class Management extends Component
   {
     if(this.state.content.length !== 0){
       const { classes } = this.props;
-      let {content, itemId, probability} = this.state;
+      let {content, probability} = this.state;
 
       return (
         <div>
@@ -114,7 +114,7 @@ class Management extends Component
             <Button variant="outlined" color="secondary" onClick={() => this.toHome()}>前往抽奖页面</Button>
           </div>
           <div className="prize_form">
-            <div className="title2">管 理 抽 奖</div>
+            <div className="title2">后 台 管 理 系 统</div>
             <form className={classes.root} noValidate autoComplete="off">
               <TextField
                   required

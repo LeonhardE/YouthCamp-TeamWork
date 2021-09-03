@@ -35,24 +35,32 @@ class Home extends Component
   componentDidMount()
   {
     // 从后端获取奖品列表
-    fetch('http://localhost:5000/prizeinfo')
+    fetch('/prizeinfo')
     .then(res => res.json())
     .then((data) => {
       this.setState({
         content: data.data.prize_content,
         itemId: data.data.prize_id
       })
-      console.log(this.state.content)
+    })
+    // 从后端获取金币和奖品列表
+    fetch('/playerinfo')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({
+        gold: data.data.gold,
+        gainList: data.data.gainList
+      })
     })
   }
 
   handleBegin() 
   {
     // 判断是否在抽取过程中，以及金币是否足够
-    if (!this.state.isRolling && this.state.gold > 10) 
+    if (!this.state.isRolling && this.state.gold >= 10) 
     {
       // 通过后台API获取奖品Id和转动次数
-      fetch('http://localhost:5000/roll')
+      fetch('/roll')
       .then(res => res.json())
       .then((data) => {
         console.log("data")
@@ -63,7 +71,7 @@ class Home extends Component
           activedId: 0,
           actTimes: 0,
           isRolling: true,
-          gold: this.state.gold - 10,
+          gold: data.data.gold,
           prizeId: data.data.id,
           times: data.data.time
         })
@@ -115,8 +123,12 @@ class Home extends Component
   chargeGold()
   {
     // 充值
-    this.setState({
-      gold: this.state.gold + 100
+    fetch('/charge')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({
+        gold: data.data.gold
+      })
     })
   }
 
@@ -129,9 +141,9 @@ class Home extends Component
         <div className="btn1">
           <Button variant="outlined" color="secondary" onClick={() => this.toManagement()}>前往管理页面</Button>
         </div>
-        <div className="title1">幸 运 大 抽 奖</div>
+        <div className="title1">幸 运 大 转 盘</div>
         <div className="left">
-          <p className="intro">欢迎来到幸运大抽奖！</p>
+          <p className="intro">欢迎来到幸运大转盘！</p>
           <p className="intro">以下为您目前所持的金币数量。</p>
           <div className="goldNum"> 
             <div className="goldNumText">金 币: {gold} </div>
