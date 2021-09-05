@@ -87,6 +87,7 @@ class Management extends Component
         return
       }
     }
+
     // 表单上传至后端，更新奖项内容和概率
     var formData = new FormData();
     formData.append("content", this.state.content);
@@ -265,12 +266,11 @@ class Management extends Component
               />
               <br/>
               <TextField
-                  required
-                  id="outlined-required"
-                  label="奖项8"
+                  disabled
+                  id="outlined-disabled"
+                  label="谢谢参与（不可修改）"
                   defaultValue={content[7]}
                   variant="outlined"
-                  onChange={this.contentChange.bind(this,7)}
               />
               <TextField
                   id="outlined-number"
