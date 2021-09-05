@@ -91,12 +91,17 @@ class Home extends Component
           if (this.state.prizeId !== 7)
           {
             templist.push(this.state.content[this.state.prizeId])
+            alert('恭喜获得 '+ this.state.content[this.state.prizeId] +'！请联系管理员兑换奖品');
+          }
+          else
+          {
+            alert('抱歉！您没有获奖，感谢参与！');
           }
           this.setState({
             isRolling: false,
             gainList: templist
           })
-          alert('恭喜获得 '+ this.state.content[this.state.prizeId] +'！请联系管理员兑换奖品');
+          
           return
         }
         // 以下是动画执行时对id的判断
