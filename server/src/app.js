@@ -4,6 +4,7 @@ const port = 5000
 const multiparty = require('multiparty')
 // 奖品信息
 let content = ['爱奇艺会员', 'MacBook', '精美图书', '餐饮代金券', 'B站大会员', '巴厘岛7日游', 'iPhone 12', '谢谢参与']
+let pics = ['https://tc2.yqbimg.net/cms_jfmall/goodsimg/cms/file/2018_12_18/APP15451269083619272_460_460.jpg.jpg', 'https://ciptainformatika.co.id/wp-content/uploads/2020/08/Apple-Macbook-Pro-13_-5-e1597745110243.png', 'https://www.seoclerk.com/pics/626559-243fm01535738029.jpg', 'https://picnew14.photophoto.cn/20200704/youhuiquan-37912380_1.jpg', 'https://www.cdwxx.com/zb_users/upload/2021/01/202101241611460228356170.jpg', 'http://triphubtravel.com/wp-content/uploads/2017/05/BALI-COVER.jpg', 'https://media.image.infoseek.co.jp/isnews/photos/kyodo/kyodo_kd-newspack-2020101401000851_0-enlarge.jpg', 'https://img.tukuppt.com/png_preview/00/08/54/70BiZzuTqB.jpg!/fw/780']
 let itemId = [0, 1, 2, 3, 4, 5, 6, 7]
 let probability = [5, 1, 10, 10, 10, 5, 1, 58]
 let list = []
@@ -58,6 +59,7 @@ app.get('/prizeinfo', function(req, res) {
     msg: 'OK',
     data: {
       prize_content: content,
+      prize_pic: pics,
       prize_id: itemId,
       prize_prob: probability
     }

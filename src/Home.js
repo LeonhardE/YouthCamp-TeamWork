@@ -13,6 +13,8 @@ class Home extends Component
     {
       // 奖品内容
       content: [],
+      // 奖品图片
+      pics: [],
       // 奖品ID
       itemId: [],
       // 被选中的格子的ID
@@ -40,6 +42,7 @@ class Home extends Component
     .then((data) => {
       this.setState({
         content: data.data.prize_content,
+        pics: data.data.prize_pic,
         itemId: data.data.prize_id
       })
     })
@@ -134,7 +137,7 @@ class Home extends Component
 
   render() 
   {
-    const {content, itemId, activedId, gold, gainList} = this.state;
+    const {content, pics, itemId, activedId, gold, gainList} = this.state;
 
     return (
       <div className="App">
@@ -158,18 +161,18 @@ class Home extends Component
                 点击开始
               </div>
               <div className="area__row">
-                <RowItem content={content[0]} itemId={itemId[0]} activedId={activedId} />
-                <RowItem content={content[1]} itemId={itemId[1]} activedId={activedId} />
-                <RowItem content={content[2]} itemId={itemId[2]} activedId={activedId} />
+                <RowItem content={content[0]} itemId={itemId[0]} activedId={activedId} pic = {pics[0]} />
+                <RowItem content={content[1]} itemId={itemId[1]} activedId={activedId} pic = {pics[1]}/>
+                <RowItem content={content[2]} itemId={itemId[2]} activedId={activedId} pic = {pics[2]}/>
               </div>
               <div className="area__row">
-                <RowItem content={content[7]} itemId={itemId[7]} activedId={activedId} />
-                <RowItem content={content[3]} itemId={itemId[3]} activedId={activedId} />
+                <RowItem content={content[7]} itemId={itemId[7]} activedId={activedId} pic = {pics[7]}/>
+                <RowItem content={content[3]} itemId={itemId[3]} activedId={activedId} pic = {pics[3]}/>
               </div>
               <div className="area__row">
-                <RowItem content={content[6]} itemId={itemId[6]} activedId={activedId} />
-                <RowItem content={content[5]} itemId={itemId[5]} activedId={activedId} />
-                <RowItem content={content[4]} itemId={itemId[4]} activedId={activedId} />
+                <RowItem content={content[6]} itemId={itemId[6]} activedId={activedId} pic = {pics[6]}/>
+                <RowItem content={content[5]} itemId={itemId[5]} activedId={activedId} pic = {pics[5]}/>
+                <RowItem content={content[4]} itemId={itemId[4]} activedId={activedId} pic = {pics[4]}/>
               </div>
             </div>
           </div>

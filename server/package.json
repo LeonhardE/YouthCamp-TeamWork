@@ -11,11 +11,9 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.12"
   },
-
   "scripts": {
     "start": "nodemon --exec babel-node -- ./index.js",
     "build": "babel ./index.js --out-file server-compiled.js",
     "serve": "node server-compiled.js"
   }
-  
 }
